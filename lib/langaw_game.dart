@@ -25,11 +25,6 @@ class LangawGame extends Game {
   Backyard background;
 
   void render(Canvas canvas) {
-    // Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
-    // Paint bgPaint = Paint();
-    // bgPaint.color = Color.fromRGBO(34, 47, 62, 1);
-    // canvas.drawRect(bgRect, bgPaint);
-
     background.render(canvas);
     flies.forEach((fly) => fly.render(canvas));
   }

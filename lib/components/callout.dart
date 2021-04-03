@@ -37,7 +37,7 @@ class Callout {
 
   void update(double t) {
     if (fly.game.activeView == View.playing) {
-      value -= t * 0.5;
+      value -= t * 0.2;
       if (value <= 0) {
         fly.game.activeView = View.lost;
       }

@@ -5,7 +5,7 @@ import 'fly.dart';
 import '../langaw_game.dart';
 
 class AgileFly extends Fly {
-  double get speed => game.tileSize * 5;
+  double get speed => game.tileSize * 4.5;
   AgileFly(LangawGame game, double x, double y) : super(game) {
     flyingSprite = [];
     flyingSprite.add(Sprite('flies/agile-fly-1.png'));

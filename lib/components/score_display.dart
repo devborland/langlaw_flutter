@@ -22,7 +22,7 @@ class ScoreDisplay {
         Shadow(
           blurRadius: 7,
           color: Color(0xFF000000),
-          // offset: Offset(3.0, 3.0),
+          offset: Offset(3.0, 3.0),
         )
       ],
     );

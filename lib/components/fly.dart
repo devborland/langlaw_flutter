@@ -15,14 +15,7 @@ class Fly {
   double get speed => game.tileSize * 3;
   Offset targetLocation;
 
-  Fly(
-    this.game,
-    // double x,
-    // double y,
-  ) {
-    // flyRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
-    // flyPaint = Paint();
-    // flyPaint.color = Color(0xff6ab04c);
+  Fly(this.game) {
     setTargetLocation();
   }
 
@@ -35,7 +28,6 @@ class Fly {
   }
 
   void render(Canvas c) {
-    // c.drawRect(flyRect, flyPaint);
     if (isDead) {
       deadSprite.renderRect(c, flyRect.inflate(2));
     } else {
@@ -48,7 +40,7 @@ class Fly {
 
   void update(double t) {
     if (isDead) {
-      flyRect = flyRect.translate(0, game.tileSize * t * 5);
+      flyRect = flyRect.translate(0, game.tileSize * t * 8);
     } else {
       flyingSpriteIndex += 30 * t;
       if (flyingSpriteIndex >= 2) {
@@ -76,7 +68,6 @@ class Fly {
   }
 
   void onTapDown() {
-    //  flyPaint.color = Color(0xffff4757);
     if (isDead == false) {
       isDead = true;
       game.spawnFly();

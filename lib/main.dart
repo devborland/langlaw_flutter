@@ -6,38 +6,39 @@ import 'package:flutter/gestures.dart';
 import 'package:flame/flame.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   Util flameUtil = Util();
   await flameUtil.fullScreen();
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
-
   try {
     Flame.images.loadAll(<String>[
-      'images/bg/backyard.png',
-      'images/flies/agile-fly-1.png',
-      'images/flies/agile-fly-2.png',
-      'images/flies/agile-fly-dead.png',
-      'images/flies/drooler-fly-1.png',
-      'images/flies/drooler-fly-2.png',
-      'images/flies/drooler-fly-dead.png',
-      'images/flies/house-fly-1.png',
-      'images/flies/house-fly-2.png',
-      'images/flies/house-fly-dead.png',
-      'images/flies/hungry-fly-1.png',
-      'images/flies/hungry-fly-2.png',
-      'images/flies/hungry-fly-dead.png',
-      'images/flies/macho-fly-1.png',
-      'images/flies/macho-fly-2.png',
-      'images/flies/macho-fly-dead.png',
+      'bg/backyard.png',
+      'flies/agile-fly-1.png',
+      'flies/agile-fly-2.png',
+      'flies/agile-fly-dead.png',
+      'flies/drooler-fly-1.png',
+      'flies/drooler-fly-2.png',
+      'flies/drooler-fly-dead.png',
+      'flies/house-fly-1.png',
+      'flies/house-fly-2.png',
+      'flies/house-fly-dead.png',
+      'flies/hungry-fly-1.png',
+      'flies/hungry-fly-2.png',
+      'flies/hungry-fly-dead.png',
+      'flies/macho-fly-1.png',
+      'flies/macho-fly-2.png',
+      'flies/macho-fly-dead.png',
     ]);
+
+    var game = LangawGame();
+    runApp(game.widget);
+
+    var tapper = TapGestureRecognizer();
+    tapper.onTapDown = game.onTapDown;
+    // ignore: deprecated_member_use
+    flameUtil.addGestureRecognizer(tapper);
   } catch (e) {
     print(e);
   }
-
-  var game = LangawGame();
-  runApp(game.widget);
-
-  var tapper = TapGestureRecognizer();
-  tapper.onTapDown = game.onTapDown;
-  // ignore: deprecated_member_use
-  flameUtil.addGestureRecognizer(tapper);
 }

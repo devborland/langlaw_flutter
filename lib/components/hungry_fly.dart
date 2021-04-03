@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
-import 'fly.dart';
+
 import '../langaw_game.dart';
+import 'fly.dart';
 
 class HungryFly extends Fly {
   HungryFly(LangawGame game, double x, double y) : super(game) {

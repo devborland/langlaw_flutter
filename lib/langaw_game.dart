@@ -72,10 +72,14 @@ class LangawGame extends Game {
   }
 
   void onTapDown(TapDownDetails d) {
-    flies.forEach((fly) {
-      if (fly.flyRect.contains(d.globalPosition)) {
-        fly.onTapDown();
-      }
-    });
+    try {
+      flies.forEach((fly) {
+        if (fly.flyRect.contains(d.globalPosition)) {
+          fly.onTapDown();
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }

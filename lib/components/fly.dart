@@ -2,10 +2,11 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 
 import '../langaw_game.dart';
+import '../view.dart';
+import 'callout.dart';
 
 class Fly {
   Rect flyRect;
-  // Paint flyPaint;
   final LangawGame game;
   bool isDead = false;
   bool isOffScreen = false;
@@ -14,9 +15,11 @@ class Fly {
   double flyingSpriteIndex = 0;
   double get speed => game.tileSize * 3;
   Offset targetLocation;
+  Callout callout;
 
   Fly(this.game) {
     setTargetLocation();
+    callout = Callout(this);
   }
 
   void setTargetLocation() {
@@ -35,6 +38,7 @@ class Fly {
         canvas,
         flyRect.inflate(2),
       );
+      if (game.activeView == View.playing) callout.render(canvas);
     }
   }
 
@@ -60,6 +64,7 @@ class Fly {
         flyRect = flyRect.shift(toTarget);
         setTargetLocation();
       }
+      callout.update(t);
     }
 
     if (flyRect.top > game.screenSize.height) {
@@ -68,8 +73,7 @@ class Fly {
   }
 
   void onTapDown() {
-    if (isDead == false) {
-      isDead = true;
-    }
+    isDead = true;
+    game.score++;
   }
 }

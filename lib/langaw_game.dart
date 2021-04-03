@@ -15,6 +15,7 @@ import 'components/drooler_fly.dart';
 import 'components/start_button.dart';
 import 'components/help_button.dart';
 import 'components/credits_button.dart';
+import 'components/score_display.dart';
 
 import 'view.dart';
 import 'views/home_view.dart';
@@ -28,6 +29,8 @@ class LangawGame extends Game {
   LangawGame() {
     initialize();
   }
+
+  int score;
 
   Size screenSize;
   double tileSize;
@@ -43,8 +46,10 @@ class LangawGame extends Game {
   CreditsButton creditsButton;
   HelpView helpView;
   CreditsView creditsView;
+  ScoreDisplay scoreDisplay;
 
   void initialize() async {
+    score = 0;
     rnd = Random();
     flies = <Fly>[];
 
@@ -59,6 +64,7 @@ class LangawGame extends Game {
     creditsButton = CreditsButton(this);
     helpView = HelpView(this);
     creditsView = CreditsView(this);
+    scoreDisplay = ScoreDisplay(this);
   }
 
   void render(Canvas canvas) {
@@ -78,12 +84,15 @@ class LangawGame extends Game {
     if (activeView == View.lost) lostView.render(canvas);
     if (activeView == View.help) helpView.render(canvas);
     if (activeView == View.credits) creditsView.render(canvas);
+    if (activeView == View.playing) scoreDisplay.render(canvas);
   }
 
   void update(double t) {
     flies.forEach((fly) => fly.update(t));
     flies.removeWhere((fly) => fly.isOffScreen);
     spawner.update(t);
+
+    if (activeView == View.playing) scoreDisplay.update(t);
   }
 
   void resize(Size size) {

@@ -27,12 +27,12 @@ class Fly {
     targetLocation = Offset(x, y);
   }
 
-  void render(Canvas c) {
+  void render(Canvas canvas) {
     if (isDead) {
-      deadSprite.renderRect(c, flyRect.inflate(2));
+      deadSprite.renderRect(canvas, flyRect.inflate(2));
     } else {
       flyingSprite[flyingSpriteIndex.toInt()].renderRect(
-        c,
+        canvas,
         flyRect.inflate(2),
       );
     }
@@ -70,7 +70,6 @@ class Fly {
   void onTapDown() {
     if (isDead == false) {
       isDead = true;
-      game.spawnFly();
     }
   }
 }
